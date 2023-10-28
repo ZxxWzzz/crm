@@ -139,26 +139,30 @@
                             // 设置要输入的时间
                             var inputTime = savedYear + '-' + savedMonth + '-' + savedDay;
 
-                            // 让日期时间输入框获取焦点
-                            dateTimeInput.focus();
+                            // 创建 MutationObserver 实例，监视日期时间输入框的变化
+                            var observer = new MutationObserver(function(mutationsList) {
+                                // 循环检查每个变化
+                                for (var mutation of mutationsList) {
+                                    // 检查是否是子节点的值发生了变化
+                                    if (mutation.type === 'childList' && mutation.target === dateTimeInput) {
+                                        // 重新设置日期
+                                        dateTimeInput.value = inputTime;
+                                        // 停止监视，以免触发多次
+                                        //observer.disconnect();
+                                        //break;
+
+                                    }
+                                }
+                            });
+
+                            // 配置 MutationObserver，监视子节点的变化
+                            var config = { childList: true, subtree: true };
+
+                            // 启动 MutationObserver
+                            observer.observe(dateTimeInput, config);
 
                             // 设置日期时间输入框的值
                             dateTimeInput.value = inputTime;
-
-                            // 触发日期时间输入框的 input 事件（模拟用户输入）
-                            var inputEvent = new Event('input', {
-                                bubbles: true,
-                                cancelable: true
-                            });
-                            dateTimeInput.dispatchEvent(inputEvent);
-
-                            // 如果日期选择器没有打开，你可以尝试模拟点击日期时间输入框
-                            var clickEvent = new MouseEvent('click', {
-                                bubbles: true,
-                                cancelable: true,
-                                view: window
-                            });
-                            dateTimeInput.dispatchEvent(clickEvent);
                         }
                     }
                 });
