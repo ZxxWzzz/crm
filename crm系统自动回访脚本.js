@@ -150,7 +150,6 @@
                                         // 停止监视，以免触发多次
                                         observer.disconnect();
                                         break;
-
                                     }
                                 }
                             });
@@ -164,7 +163,13 @@
                             // 设置日期时间输入框的值
                             dateTimeInput.value = inputTime;
 
-                            //
+                            // 查找提交按钮
+                            //var submitButton = document.querySelector('button.ant-btn-primary');
+
+                            //如果需要，在这里可以模拟点击提交按钮的事件
+                            //if (submitButton) {
+                                //submitButton.click();
+                           // }
                         }
                     }
                 });
