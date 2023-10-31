@@ -148,8 +148,8 @@
                                         // 重新设置日期
                                         dateTimeInput.value = inputTime;
                                         // 停止监视，以免触发多次
-                                        //observer.disconnect();
-                                        //break;
+                                        observer.disconnect();
+                                        break;
 
                                     }
                                 }
@@ -163,6 +163,8 @@
 
                             // 设置日期时间输入框的值
                             dateTimeInput.value = inputTime;
+
+                            //
                         }
                     }
                 });
